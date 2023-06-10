@@ -4,7 +4,6 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { CldImage } from "next-cloudinary";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
@@ -161,7 +160,18 @@ export default function SharedModal({
                         id === images.length - 1 ? "rounded-r-lg" : ""
                       } relative inline-block w-full shrink-0 transform-gpu overflow-hidden focus:outline-none`}
                     >
-                      <CldImage
+                      <Image
+                        alt={imageLabel}
+                        width={220}
+                        height={160}
+                        className={`${
+                          id === index
+                            ? "brightness-110 contrast-125"
+                            : "brightness-75 contrast-125 hover:brightness-95"
+                        } h-full transform object-cover transition`}
+                        src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_thumb,g_faces,h_140,w_200/bo_10px_solid_black/${public_id}.${format}`}
+                      />
+                      {/* <CldImage
                         alt='small photos on the bottom'
                         width={180}
                         height={120}
@@ -174,7 +184,7 @@ export default function SharedModal({
                             : "brightness-50 contrast-125 hover:brightness-75"
                         } h-full transform object-cover transition`}
                         src={public_id}
-                      />
+                      /> */}
                     </motion.button>
                   ))}
                 </AnimatePresence>
