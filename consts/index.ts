@@ -7,7 +7,6 @@ type CurrentImageProps = {
   public_id: string;
   format: string;
   blurDataUrl?: string;
-  border?: string;
 };
 
 export const DIRECTORY_NAME = "deanna-simpson";

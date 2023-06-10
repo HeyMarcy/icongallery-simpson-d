@@ -11,6 +11,8 @@ import { useSwipeable } from "react-swipeable";
 import { variants } from "../utils/animationVariants";
 import { range } from "../utils/range";
 import type { ImageProps, SharedModalProps } from "../utils/types";
+import { CldImage } from "next-cloudinary";
+import { DIRECTORY_NAME } from "../consts";
 export default function SharedModal({
   index,
   images,
@@ -25,7 +27,6 @@ export default function SharedModal({
   let filteredImages = images?.filter((img: ImageProps) =>
     range(index - 15, index + 15).includes(img.id)
   );
-  const DIRECTORY_NAME = "deanna-simpson";
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -44,9 +45,7 @@ export default function SharedModal({
   let currentImage = images ? images[index] : currentPhoto;
   let aspectRatio = Number(currentImage.width) / Number(currentImage.height);
   let imageLabel = currentImage.public_id.slice(DIRECTORY_NAME.length + 1, -7);
-  console.log(
-    `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_180/${currentImage.public_id}`
-  );
+
   return (
     <MotionConfig
       transition={{
@@ -88,11 +87,13 @@ export default function SharedModal({
                 exit='exit'
                 className='absolute'
               >
-                <Image
-                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_749/${currentImage.public_id}.${currentImage.format}`}
+                <CldImage
+                  src={currentImage.public_id}
                   width={aspectRatio > 1 ? 749 : 499}
                   height={aspectRatio > 1 ? 499 : 749}
                   priority
+                  blurDataURL={currentImage.blurDataUrl}
+                  placeholder='blur'
                   alt={imageLabel}
                   onLoadingComplete={() => setLoaded(true)}
                 />
