@@ -12,9 +12,6 @@ type CurrentImageProps = {
 
 export const DIRECTORY_NAME = "deanna-simpson";
 
-export const imageLabel = (currentImage: CurrentImageProps) =>
-  currentImage.public_id.slice(DIRECTORY_NAME.length + 1, -7);
-
 export const aspectRatio = (currentImage: CurrentImageProps) =>
   Number(currentImage.width) / Number(currentImage.height);
 

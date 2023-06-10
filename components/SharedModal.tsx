@@ -52,27 +52,27 @@ export default function SharedModal({
         opacity: { duration: 0.2 },
       }}
     >
-      {/* close modal */}
-      <div className='absolute right-4 top-3 z-50 flex items-center gap-2 p-3 text-white'>
-        <button
-          onClick={() => closeModal()}
-          className='rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white'
-        >
-          {navigation ? (
-            <XMarkIcon className='h-5 w-5' />
-          ) : (
-            <ArrowUturnLeftIcon className='h-5 w-5' />
-          )}
-        </button>
-      </div>
-      {/* image label */}
-      <div className='font-sm absolute left-5 top-4 z-50 bg-black px-2 py-1 text-white'>
-        <p className='text-sm md:text-base '> {imageLabel}</p>
-      </div>
       <div
-        className='relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto'
+        className='relative z-50 flex aspect-[3/2] h-full w-full max-w-7xl items-center wide:h-full'
         {...handlers}
       >
+        {/* close modal */}
+        <div className='absolute right-4 top-3 z-50 flex items-center gap-2 p-3 text-white'>
+          <button
+            onClick={() => closeModal()}
+            className='rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white'
+          >
+            {navigation ? (
+              <XMarkIcon className='h-5 w-5' />
+            ) : (
+              <ArrowUturnLeftIcon className='h-5 w-5' />
+            )}
+          </button>
+        </div>
+        {/* image label */}
+        <div className='font-sm absolute left-5 top-4   z-50 bg-black px-2 py-1 text-white'>
+          <p className='text-sm md:text-base '> {imageLabel}</p>
+        </div>
         {/* Main image */}
         <div className='h-97 w-full placeholder:overflow-hidden'>
           <div className='relative flex aspect-[2/1] items-center justify-center pb-24'>
