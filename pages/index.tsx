@@ -46,10 +46,17 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           <div className='after:content relative mb-5 flex h-[340px] flex-col items-center justify-center gap-5 overflow-hidden rounded-lg bg-white/10 px-6 pb-11 pt-6 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:h-[420px] lg:pt-1'>
             <Logo />
 
-            <h1 className='text-base  uppercase tracking-wide text-white/75'>
+            <h2 className='text-base  uppercase tracking-wide text-white/75'>
               Icon Gallery <br></br>Viewing Room
-            </h1>
+            </h2>
             <p className='mt-2 max-w-[40ch] text-sm tracking-wide text-white/75 sm:max-w-[32ch]'>
+              {" "}
+              Featuring the work of
+            </p>
+            <h1 className=' mb-0 text-3xl  uppercase tracking-widest lg:text-4xl xl:text-4xl'>
+              Jon Sievert
+            </h1>
+            <p className='mt-2 max-w-[40ch] text-base tracking-wide text-white/75 sm:max-w-[32ch]'>
               Curated for Deanna Simpson
             </p>
           </div>
