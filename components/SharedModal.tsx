@@ -1,21 +1,17 @@
 import {
-  ArrowDownTrayIcon,
-  ArrowTopRightOnSquareIcon,
   ArrowUturnLeftIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { CldImage } from "next-cloudinary";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { variants } from "../utils/animationVariants";
-import downloadPhoto from "../utils/downloadPhoto";
 import { range } from "../utils/range";
 import type { ImageProps, SharedModalProps } from "../utils/types";
-import Twitter from "./Icons/Twitter";
-
 export default function SharedModal({
   index,
   images,
@@ -30,6 +26,7 @@ export default function SharedModal({
   let filteredImages = images?.filter((img: ImageProps) =>
     range(index - 15, index + 15).includes(img.id)
   );
+  const DIRECTORY_NAME = "deanna-simpson";
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -46,7 +43,8 @@ export default function SharedModal({
   });
 
   let currentImage = images ? images[index] : currentPhoto;
-
+  let aspectRatio = Number(currentImage.width) / Number(currentImage.height);
+  let imageLabel = currentImage.public_id.slice(DIRECTORY_NAME.length + 1, -7);
   return (
     <MotionConfig
       transition={{
@@ -77,10 +75,10 @@ export default function SharedModal({
                   }/image/upload/c_scale,${navigation ? "w_1280" : "w_1920"}/${
                     currentImage.public_id
                   }.${currentImage.format}`}
-                  width={navigation ? 1280 : 1920}
-                  height={navigation ? 853 : 1280}
+                  width={aspectRatio > 1 ? 749 : 499}
+                  height={aspectRatio > 1 ? 499 : 749}
                   priority
-                  alt='Next.js Conf image'
+                  alt={imageLabel}
                   onLoadingComplete={() => setLoaded(true)}
                 />
               </motion.div>
@@ -115,42 +113,8 @@ export default function SharedModal({
                   )}
                 </>
               )}
+
               <div className='absolute right-0 top-0 flex items-center gap-2 p-3 text-white'>
-                {navigation ? (
-                  <a
-                    href={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${currentImage.public_id}.${currentImage.format}`}
-                    className='rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white'
-                    target='_blank'
-                    title='Open fullsize version'
-                    rel='noreferrer'
-                  >
-                    <ArrowTopRightOnSquareIcon className='h-5 w-5' />
-                  </a>
-                ) : (
-                  <a
-                    href={`https://twitter.com/intent/tweet?text=Check%20out%20this%20pic%20from%20Next.js%20Conf!%0A%0Ahttps://nextjsconf-pics.vercel.app/p/${index}`}
-                    className='rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white'
-                    target='_blank'
-                    title='Open fullsize version'
-                    rel='noreferrer'
-                  >
-                    <Twitter className='h-5 w-5' />
-                  </a>
-                )}
-                <button
-                  onClick={() =>
-                    downloadPhoto(
-                      `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${currentImage.public_id}.${currentImage.format}`,
-                      `${index}.jpg`
-                    )
-                  }
-                  className='rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white'
-                  title='Download fullsize version'
-                >
-                  <ArrowDownTrayIcon className='h-5 w-5' />
-                </button>
-              </div>
-              <div className='absolute left-0 top-0 flex items-center gap-2 p-3 text-white'>
                 <button
                   onClick={() => closeModal()}
                   className='rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white'
@@ -203,7 +167,7 @@ export default function SharedModal({
                             ? "brightness-110 hover:brightness-110"
                             : "brightness-50 contrast-125 hover:brightness-75"
                         } h-full transform object-cover transition`}
-                        src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_thumb,g_faces/${public_id}.${format}`}
+                        src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_thumb,g_faces,w_180/${public_id}.${format}`}
                       />
                     </motion.button>
                   ))}
