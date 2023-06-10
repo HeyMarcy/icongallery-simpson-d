@@ -70,11 +70,7 @@ export default function SharedModal({
                 className='absolute'
               >
                 <Image
-                  src={`https://res.cloudinary.com/${
-                    process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-                  }/image/upload/c_scale,${navigation ? "w_1280" : "w_1920"}/${
-                    currentImage.public_id
-                  }.${currentImage.format}`}
+                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_749/${currentImage.public_id}.${currentImage.format}`}
                   width={aspectRatio > 1 ? 749 : 499}
                   height={aspectRatio > 1 ? 499 : 749}
                   priority
