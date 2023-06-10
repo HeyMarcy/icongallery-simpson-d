@@ -45,6 +45,9 @@ export default function SharedModal({
   let currentImage = images ? images[index] : currentPhoto;
   let aspectRatio = Number(currentImage.width) / Number(currentImage.height);
   let imageLabel = currentImage.public_id.slice(DIRECTORY_NAME.length + 1, -7);
+  console.log(
+    `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_180/${currentImage.public_id}`
+  );
   return (
     <MotionConfig
       transition={{
@@ -152,22 +155,25 @@ export default function SharedModal({
                       key={id}
                       className={`${
                         id === index
-                          ? "z-20 rounded-md shadow shadow-black/50"
+                          ? "z-20 rounded-lg shadow shadow-black/50"
                           : "z-10"
-                      } ${id === 0 ? "rounded-l-md" : ""} ${
-                        id === images.length - 1 ? "rounded-r-md" : ""
+                      } ${id === 0 ? "rounded-l-lg" : ""} ${
+                        id === images.length - 1 ? "rounded-r-lg" : ""
                       } relative inline-block w-full shrink-0 transform-gpu overflow-hidden focus:outline-none`}
                     >
-                      <Image
+                      <CldImage
                         alt='small photos on the bottom'
                         width={180}
                         height={120}
+                        crop='thumb'
+                        gravity='faces'
+                        border='5px_solid_black'
                         className={`${
                           id === index
                             ? "brightness-110 hover:brightness-110"
                             : "brightness-50 contrast-125 hover:brightness-75"
                         } h-full transform object-cover transition`}
-                        src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_thumb,g_faces,w_180/${public_id}.${format}`}
+                        src={public_id}
                       />
                     </motion.button>
                   ))}
