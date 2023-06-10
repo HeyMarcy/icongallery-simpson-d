@@ -94,6 +94,9 @@ export default function SharedModal({
                   priority
                   blurDataURL={currentImage.blurDataUrl}
                   placeholder='blur'
+                  sizes='(max-width: 768px) 100vw,
+                  (max-width: 1200px) 50vw,
+                  33vw'
                   alt={imageLabel}
                   onLoadingComplete={() => setLoaded(true)}
                 />
