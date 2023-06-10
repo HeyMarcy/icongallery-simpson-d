@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
-import Bridge from "../components/Icons/Bridge";
 import Logo from "../components/Icons/Logo";
 import Modal from "../components/Modal";
 import cloudinary from "../utils/cloudinary";
@@ -32,9 +31,9 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
+        <title>Iconic Archives</title>
       </Head>
-      <main className='mx-auto max-w-[1960px] p-4'>
+      <main className='mx-auto max-w-[1960px] p-4 md:p-7 xl:p-10'>
         {photoId && (
           <Modal
             images={images}
