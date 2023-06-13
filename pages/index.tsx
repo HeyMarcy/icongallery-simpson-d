@@ -31,7 +31,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   return (
     <>
       <Head>
-        <title>Iconic Archives</title>
+        <title>Icon Gallery</title>
       </Head>
       <main className='mx-auto max-w-[1960px] p-4 md:p-7 xl:p-10'>
         {photoId && (
@@ -70,7 +70,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
               className='after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight'
             >
               <Image
-                alt={`Iconic Archive ${imageLabel}`}
+                alt={`Icon Gallery ${imageLabel}`}
                 className='transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110'
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 placeholder='blur'

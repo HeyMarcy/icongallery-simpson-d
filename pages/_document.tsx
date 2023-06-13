@@ -10,7 +10,7 @@ class MyDocument extends Document {
             name='description'
             content='Icon Gallery Viewing Room curated for Deanna Simpson'
           />
-          <meta property='og:site_name' content='Iconic Archives' />
+          <meta property='og:site_name' content='Icon Gallery' />
         </Head>
         <body className='bg-black antialiased'>
           <Main />

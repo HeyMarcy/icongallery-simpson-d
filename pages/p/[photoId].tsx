@@ -17,7 +17,7 @@ const Home: NextPage = ({ currentPhoto }: { currentPhoto: ImageProps }) => {
   return (
     <>
       <Head>
-        <title>Iconic Archives presented by Icon Gallery</title>
+        <title>Icon Gallery presented by Icon Gallery</title>
         <meta property='og:image' content={currentPhotoUrl} />
         <meta name='twitter:image' content={currentPhotoUrl} />
       </Head>

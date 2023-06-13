@@ -76,7 +76,7 @@ export default function SharedModal({
         </div>
         {/* Main image */}
         <div className='h-97 w-full placeholder:overflow-hidden'>
-          <div className='relative flex aspect-[2/1] items-center justify-center pb-24'>
+          <div className='relative flex aspect-[1/1] items-center justify-center pb-24'>
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={index}
@@ -89,14 +89,11 @@ export default function SharedModal({
               >
                 <CldImage
                   src={currentImage.public_id}
-                  width={aspectRatio > 1 ? 749 : 499}
-                  height={aspectRatio > 1 ? 499 : 749}
+                  width={aspectRatio > 1 ? 1000 : 500}
+                  height={aspectRatio > 1 ? 600 : 500}
                   priority
                   blurDataURL={currentImage.blurDataUrl}
                   placeholder='blur'
-                  sizes='(max-width: 768px) 100vw,
-                  (max-width: 1200px) 50vw,
-                  33vw'
                   alt={imageLabel}
                   onLoadingComplete={() => setLoaded(true)}
                 />
